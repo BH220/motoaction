@@ -1,0 +1,446 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0032)http://bzm.kr/info.do#location01 -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+
+	<meta name="viewport"
+		content="user-scalable=yes, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, width=device-width">
+	<meta name="format-detection" content="telephone=no">
+	<title>:: 가게정보알림메시지 ::</title>
+	<link href="./css/mobile3_basic.css" rel="stylesheet" type="text/css">
+	<link href="./css/csscommon.css" rel="stylesheet" type="text/css">
+
+	<!-- <script type="text/javascript" src="./__ 가게정보알림메시지 ___files/jquery-1.8.3.min.js.다운로드"></script>
+<script type="text/javascript" src="./__ 가게정보알림메시지 ___files/jquery.event.drag-1.5.min.js.다운로드"></script>
+<script type="text/javascript" src="./__ 가게정보알림메시지 ___files/jquery.touchSlider.js.다운로드"></script> -->
+	<!-- <script type="text/javascript" src="/js/kakao.link.js"></script> -->
+	<!-- <script src="./__ 가게정보알림메시지 ___files/kakao.min.js.다운로드"></script>
+<script type="text/javascript" src="./__ 가게정보알림메시지 ___files/jquery.easing-1.3.js.다운로드"></script>
+<script type="text/javascript" src="./__ 가게정보알림메시지 ___files/jquery.iosslider.js.다운로드"></script>
+<script type="text/javascript" src="./__ 가게정보알림메시지 ___files/common.js.다운로드"></script>
+<script type="text/javascript" src="./__ 가게정보알림메시지 ___files/common_new.js.다운로드"></script>
+<script type="text/javascript" src="./__ 가게정보알림메시지 ___files/sdk.js.다운로드"></script><script charset="UTF-8" src="./__ 가게정보알림메시지 ___files/kakao.js.다운로드"></script> -->
+	<!--  script type="text/javascript" src="/js/typeA/jquery_myui.js"></script>-->
+
+
+	<!--
+	2. 설치 스크립트
+	* 지도 퍼가기 서비스를 2개 이상 넣을 경우, 설치 스크립트는 하나만 삽입합니다.
+-->
+	<!-- <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script> -->
+
+	<style type="text/css">
+		.highlight {
+			text-decoration: underline;
+			font-weight: bold;
+		}
+
+		a {
+			cursor: default;
+		}
+
+		#staticMap img {
+			zoom: 1;
+		}
+	</style>
+	<script type="text/javascript">
+		Kakao.init('01c1c43080296fe1796808aefc02e1ce');
+	</script>
+	<script type="text/javascript">
+
+		var mobileYN = "";
+		var listCnt = 1;
+
+		//주소창 없애기
+		window.addEventListener('load', function () {
+			document.body.style.height = (document.documentElement.clientHeight + 5) + 'px';
+			window.scrollTo(0, 1);
+		}, false);
+
+		function reviewCSS(num) {
+			var i = num;
+			var chk = true;
+			//alert("------------------- : "+ i);
+			$('.comment_div1').removeClass('highlight');
+			$('#comment_div1' + i).addClass('highlight');
+		}
+
+		$(document).ready(function () {
+
+			//textarea 줄바꿈 제한
+			$('#contents').keydown(function () {
+				var rows = $('#contents').val().split('\n').length;
+				var maxRows = 12;
+				if (rows > maxRows) {
+					//alert('3줄 까지만 가능합니다');
+					modifiedText = $('#contents').val().split("\n").slice(0, maxRows);
+					//alert("RRR modifiedText : "+modifiedText);
+					$('#contents').val(modifiedText.join("\n"));
+				}
+			});
+
+			//체크박스  새로한거
+			$(".chk_customer3").each(function () {
+				//alert("==========");
+				$(this).toggle(function () {
+					$(this).prev("input").attr("checked", true);
+					$(this).attr({ "src": "/images/typeA/check_on.png" });
+				},
+					function () {
+						$(this).prev("input").attr("checked", false);
+						$(this).attr({ "src": "/images/typeA/check.png" });
+					});
+			});
+
+
+			$("#open_review_all .open_review").hide();
+			$("#open_review_all .comment_div1").click(function () {
+
+				$(this).next(".open_review").slideToggle("fast").siblings(".open_review:visible").slideUp("fast");
+				$(this).toggleClass("active").siblings(".comment_div1").removeClass("active");
+
+			});
+
+			//$("#touchSlider6 ul li .reg01").animate({left:'-150px'},3000);
+			/*
+			$("#touchSlider6").touchSlider({
+				flexible : true,
+				initComplete : function (e) {
+					$("#touchSlider6_paging").html("");
+					$("#touchSlider6 ul li").each(function (i, el) {
+						$("#touchSlider6_paging").append('<button type="button" class="btn_page">page' + (i+1) + '</button>');
+					});
+					$("#touchSlider6_paging .btn_page").bind("click", function (e) {
+						var i = $(this).index();
+						$("#touchSlider6").get(0).go_page(i);
+					});
+				},
+				counter : function (e) {
+					$("#touchSlider6_paging .btn_page").removeClass("on").eq(e.current-1).addClass("on");
+				}
+			});
+			*/
+			$('.iosSlider').iosSlider({
+				desktopClickDrag: true,
+				snapToChildren: true,
+				infiniteSlider: true,
+				navSlideSelector: '.sliderContainer .slideSelectors .item',
+				onSlideComplete: slideComplete,
+				onSliderLoaded: sliderLoaded,
+				onSlideChange: slideChange,
+				autoSlide: true,
+				autoSlideTimer: 5000,
+				scrollbar: true,
+				scrollbarContainer: '.sliderContainer .scrollbarContainer',
+				scrollbarMargin: '0',
+				scrollbarBorderRadius: '0',
+				keyboardControls: true
+			});
+
+
+		});
+
+		function slideChange(args) {
+			$('.sliderContainer .slideSelectors .item').removeClass('selected');
+			$('.sliderContainer .slideSelectors .item:eq(' + (args.currentSlideNumber - 1) + ')').addClass('selected');
+		}
+
+		function slideComplete(args) {
+			if (!args.slideChanged) return false;
+		}
+
+		function sliderLoaded(args) {
+			slideChange(args);
+		}
+
+		function fnResult(result, message, redir_url) {
+			//alert("info result : "+result+" , redir_url : "+redir_url);
+			if (result == "success") {
+				if (message != "") {
+					alert(message);
+				}
+				location.href = redir_url;
+			} else if (result == "reviewDelOK") {
+				document.reDirectForm.submit();
+			} else if (result == "fail") {
+				alert(message);
+			} else {
+				alert(message);
+			}
+		}
+
+
+		// 상점에서 홈페이지 자동 연결시...
+		reDirect();
+		function reDirect() {
+			var userWebUseYN = "N";
+			var userWebURL = "";
+
+			userWebURL = userWebURL.replace("http://", "");
+
+			userWebUseYN.toUpperCase();
+
+			if (userWebUseYN == "Y") location.href = "http://" + userWebURL;
+		} 
+	</script>
+
+</head>
+
+<body onload="reDirect(); mobileWeb();" style="height: 942px;">
+
+	<div id="wrapper">
+		<!--래퍼경계 -->
+
+		<!--타이틀영역 -->
+		<div style="height:50px; background: rgb(220, 101, 95) url(/images/typeA/bg_title.gif) bottom repeat-x;">
+			<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+				<tbody>
+					<tr>
+						<td nowrap="nowrap" style="text-align:center; color:#FFF; font-size:25px;; font-weight:bold">
+							모토액션
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!--타이틀영역 -->
+
+		<div style="height:18px; background: url(/images/typeA/mobile3_03.png) top repeat-x;"></div>
+
+
+		<!--인덱스영역 -->
+		<div style="background-color:#fffaf5;">
+
+			<!--본문 -->
+			<div style="padding:10px 0;">
+				<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+					<colgroup>
+						<col width="4%">
+						<col width="">
+						<col width="4%">
+					</colgroup>
+
+					<tbody>
+						<tr>
+							<td>&nbsp;</td>
+							<td>
+								<!--이미지테이블 start -->
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tbody>
+										<tr>
+											<td rowspan="5" align="center" valign="top">
+												<!-- 상점 대표 이미지 START img src="img/img.png"  height="280"-->
+
+												<img src="./img/main.jpg" alt="가게 이미지" style="border:#acabab 1px solid;"
+													width="330px" height="263px">
+
+
+												<!-- 상점 대표 이미지 END -->
+
+											</td>
+											<td align="center" nowrap="nowrap" style="font-weight:bold; color:rgb(220, 101, 95);">
+												전화&nbsp;</td>
+											<td>
+												<table width="100%" border="0" cellspacing="0" cellpadding="0">
+													<tbody>
+														<tr>
+															<td width="1">
+																<img src="./img/bt3_1.png" alt="" class="size_1">
+															</td>
+															<td align="center" nowrap="nowrap"
+																style="font-size:0.9em; letter-spacing:-0.5;background-image: url(./img/bt_phone_bg.png);"
+																class="index_bt_bg">
+																<img src="./img/bt1_1.png" width="47" height="50"
+																	border="0"
+																	style="position:relative; right:5px; top:5px;">
+
+																<a href="tel:032-881-4433"
+																	style="text-decoration:none; color:#333; position:relative; bottom:2px;">
+																	032 - 881 - 4433
+																</a>
+
+															</td>
+															<td width="1"><img src="./img/bt2_3.png" class="size_1">
+															</td>
+														</tr>
+														<tr>
+															<td style="height: 5px;"></td>
+														</tr>
+														<tr>
+															<td width="1">
+																<img src="./img/bt3_1.png" alt="" class="size_1">
+															</td>
+															<td align="center" nowrap="nowrap"
+																style="font-size:0.9em; letter-spacing:-0.5;background-image: url(./img/bt_phone_bg.png);"
+																class="index_bt_bg">
+																<img src="./img/bt1_1.png" width="47" height="50"
+																	border="0"
+																	style="position:relative; right:5px; top:5px;">
+
+																<a href="tel:010-3826-2642"
+																	style="text-decoration:none; color:#333; position:relative; bottom:2px;">
+																	010 - 3826 - 2642
+																</a>
+
+															</td>
+															<td width="1"><img src="./img/bt2_3.png" class="size_1">
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+											</td>
+										</tr>
+
+										<tr>
+											<td height="5" colspan="2"></td>
+										</tr>
+										<tr>
+											<td align="center" nowrap="nowrap" style="font-weight:bold; color:rgb(220, 101, 95);">
+												홈페이지&nbsp;</td>
+											<td>
+												<table width="100%" border="0" cellspacing="0" cellpadding="0">
+													<tbody>
+														<tr>
+															<td>
+																<a href="http://www.moto-action.co.kr" target="_blank">www.moto-actino.co.kr</a>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+										</tr>
+
+
+
+									</tbody>
+								</table>
+								<!--이미지테이블  end-->
+
+								<div style="height:25px;"></div>
+
+								<!--data1 입력정보테이블 -->
+								<div class="data1">
+									<!-- 004 : 여행/숙박 > 여행지 -->
+
+									<!-- 011 : 관공서 -->
+									<table width="100%" border="0" cellspacing="0" cellpadding="0">
+										<colgroup>
+											<col width="15%">
+											<col width="">
+										</colgroup>
+										<tbody>
+											<tr>
+												<td class="info_td1">
+													<img src="./img/bg2.png" class="blit">
+													주소
+												</td>
+												<td class="info_td2" style="padding-bottom:10px;">인천광역시 미추홀구 석정로252번길 5
+													미추홀 타워 D동 102호</td>
+											</tr>
+
+											<tr>
+												<td class="info_td1">
+													<img src="./img/bg2.png" class="blit">
+													영업시간<br>
+												</td>
+												<td class="info_td2">
+													평일,주말: 10시 00분 ~ 20시 00분
+												</td>
+											</tr>
+
+											<tr>
+												<td class="info_td1">
+													<img src="./img/bg2.png" class="blit">
+													휴일정보
+												</td>
+												<td class="info_td2">일요일 휴무</td>
+											</tr>
+
+
+
+											<tr>
+												<td class="info_td1"><img src="./img/bg2.png" class="blit">
+													취급품목
+												</td>
+												<td class="info_td2">#내비매립 #블랙박스 #매직카경보기 #전동트렁크 #모든 자동차 관련 용품</td>
+											</tr>
+
+
+											<tr>
+												<td class="info_td1"><img src="./img/bg2.png" class="blit">
+													위치안내
+												</td>
+												<td class="info_td2">제물포역 2번출구(선인고등학교 있는 방향) 쪽에 있는 도로(석정로)에서 [도화역]방향으로
+													700m 직진 후 우측에 위치
+												</td>
+											</tr>
+											<td class="info_td1">
+
+											</td>
+											<td class="info_td2">
+												<a href="https://apis.openapi.sk.com/tmap/app/routes?appKey=l7xx426dfa39730f4d36a58efca0d173d359&name=모토액션&lon=126.663740&lat=37.468368"
+													
+													class="btn btn-success btn-sm non-radius"
+													style="background:#FFF;color:#000; padding:2px 2px ; font-weight:700; border:1px solid #333; text-decoration: none; font-size: medium;"><img
+														src="img/tmap_logo.png" width="45" height="45">
+													T-MAP&nbsp;</a>
+													&nbsp;
+												<a href="#"
+													onclick="navi(126.663740505887,37.46836894220,''); return false;"
+													class="btn btn-success btn-sm non-radius"
+													style="background:#fae001;color:#000; padding:2px 2px ; font-weight:700; border:1px solid #333; text-decoration: none; font-size: medium;">
+													<img src="img/kakaonavi_btn_medium.png" width="45" height="45">
+													카카오내비&nbsp;</a>
+													
+													
+											</td>
+
+							</td>
+						<tr>
+							<td class="info_td1">
+
+							</td>
+
+							<td class="info_td2">
+								<iframe
+									src="https://iwi.kr/plugin/map/nmap_frame-0.2.php?mapy=37.46836894220&mapx=126.663740505887&level=16&level_status=&h=310&fix=1&disable_move=&etitle=&disable_zoom=&disable_type=&disable_road="
+									width="100%" height="400px" scrolling="no" frameborder="0" marginwidth="0"
+									marginheight="0" align="center"></iframe>
+
+								
+							</td>
+						</tr>
+
+
+
+					</tbody>
+				</table>
+
+				<div style="height:5px;"></div>
+			</div>
+			<!--data1 입력정보테이블 -->
+			</td>
+			<td>&nbsp;</td>
+			</tr>
+			</tbody>
+			</table>
+		</div>
+		<!--본문 -->
+	</div>
+	<!--인덱스영역 -->
+
+	<div style="height:30px; background: rgb(220, 101, 95) url(/images/typeA/bg_title.gif) bottom repeat-x;">
+		<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+			<tbody>
+				<tr>
+					<td style="text-align:center; color:#FFF; font-size:20px; ">
+						<a href="info.moto-action.co.kr" style="text-decoration:none; color:#FFF; font-family:'Arial'">i n f o . m o t o - a c t i o n . c o . k r</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>

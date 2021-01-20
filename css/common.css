@@ -1,0 +1,68 @@
+.menuBtnImg{
+	width: 32px;
+	height: 32px;
+}
+.fluidHeight {
+	width: 134px;
+	height: 108px;
+	padding: 0;
+	position: relative;
+}
+
+.sliderContainer {
+	position: absolute;
+	width: 134px;
+	height: 108px;
+	padding: 0;
+}
+
+.iosSlider {
+	position: relative;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	width: 134;
+	height: 108px;
+	padding: 0;
+}
+
+.iosSlider .slider {
+	width: 134px;
+	height: 108px;
+	padding: 0;
+}
+
+.iosSlider .slider .item {
+	width: 134px;
+	height: 108px;
+	padding: 0;
+}
+
+.sliderContainer .slideSelectors {
+	position: relative;
+	padding-top:5px;
+	padding-buttom:20px;
+	align:center;
+	margin: 0 auto;
+	z-index: 1;
+	height: 20px;
+}
+
+.sliderContainer .slideSelectors .item {
+	float: left;
+	width: 8px;
+	height: 8px;
+	border: 1px solid #ccc;
+	border-radius:8px;
+	background: #ccc;
+	text-align:center;
+	margin: 0 0 0 3px;
+	opacity: 0.50;
+	filter: alpha(opacity=50);
+}
+
+.sliderContainer .slideSelectors .selected {
+	background: #ff9900;
+	opacity: 1;
+	filter: alpha(opacity=100);
+}
