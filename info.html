@@ -1,5 +1,5 @@
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0032)http://bzm.kr/info.do#location01 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -9,10 +9,9 @@
 	<meta name="viewport"
 		content="user-scalable=yes, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, width=device-width">
 	<meta name="format-detection" content="telephone=no">
-	<title>※ 모토액션 위치 안내 ※</title>
+	<title>＃ 모토액션 위치 안내 #</title>
 	<link href="./css/mobile3_basic.css" rel="stylesheet" type="text/css">
 	<link href="./css/csscommon.css" rel="stylesheet" type="text/css">
-
 	<style type="text/css">
 		.highlight {
 			text-decoration: underline;
@@ -49,61 +48,6 @@
 			$('#comment_div1' + i).addClass('highlight');
 		}
 
-		$(document).ready(function () {
-
-			//textarea 줄바꿈 제한
-			$('#contents').keydown(function () {
-				var rows = $('#contents').val().split('\n').length;
-				var maxRows = 12;
-				if (rows > maxRows) {
-					//alert('3줄 까지만 가능합니다');
-					modifiedText = $('#contents').val().split("\n").slice(0, maxRows);
-					//alert("RRR modifiedText : "+modifiedText);
-					$('#contents').val(modifiedText.join("\n"));
-				}
-			});
-
-			//체크박스  새로한거
-			$(".chk_customer3").each(function () {
-				//alert("==========");
-				$(this).toggle(function () {
-					$(this).prev("input").attr("checked", true);
-					$(this).attr({ "src": "/images/typeA/check_on.png" });
-				},
-					function () {
-						$(this).prev("input").attr("checked", false);
-						$(this).attr({ "src": "/images/typeA/check.png" });
-					});
-			});
-
-
-			$("#open_review_all .open_review").hide();
-			$("#open_review_all .comment_div1").click(function () {
-
-				$(this).next(".open_review").slideToggle("fast").siblings(".open_review:visible").slideUp("fast");
-				$(this).toggleClass("active").siblings(".comment_div1").removeClass("active");
-
-			});
-
-			//$("#touchSlider6 ul li .reg01").animate({left:'-150px'},3000);
-			/*
-			$("#touchSlider6").touchSlider({
-				flexible : true,
-				initComplete : function (e) {
-					$("#touchSlider6_paging").html("");
-					$("#touchSlider6 ul li").each(function (i, el) {
-						$("#touchSlider6_paging").append('<button type="button" class="btn_page">page' + (i+1) + '</button>');
-					});
-					$("#touchSlider6_paging .btn_page").bind("click", function (e) {
-						var i = $(this).index();
-						$("#touchSlider6").get(0).go_page(i);
-					});
-				},
-				counter : function (e) {
-					$("#touchSlider6_paging .btn_page").removeClass("on").eq(e.current-1).addClass("on");
-				}
-			});
-			*/
 			$('.iosSlider').iosSlider({
 				desktopClickDrag: true,
 				snapToChildren: true,
@@ -136,36 +80,8 @@
 		function sliderLoaded(args) {
 			slideChange(args);
 		}
-
-		function fnResult(result, message, redir_url) {
-			//alert("info result : "+result+" , redir_url : "+redir_url);
-			if (result == "success") {
-				if (message != "") {
-					alert(message);
-				}
-				location.href = redir_url;
-			} else if (result == "reviewDelOK") {
-				document.reDirectForm.submit();
-			} else if (result == "fail") {
-				alert(message);
-			} else {
-				alert(message);
-			}
-		}
-
-
-		// 상점에서 홈페이지 자동 연결시...
-		reDirect();
-		function reDirect() {
-			var userWebUseYN = "N";
-			var userWebURL = "";
-
-			userWebURL = userWebURL.replace("http://", "");
-
-			userWebUseYN.toUpperCase();
-
-			if (userWebUseYN == "Y") location.href = "http://" + userWebURL;
-		} 
+ 
+ 
 	</script>
 
 </head>
